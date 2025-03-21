@@ -1,38 +1,72 @@
 import { useState } from "react";
 import "./App.css";
+import CountryInfoModal from "../../components/CountryInfoModal/CountryInfoModal";
 
 function App() {
   let prevCountryName = null;
-  let prevCountryArray = null;
+
+  const [countryName, setCountryName] = useState(null);
+  const [displayInfo, setDisplayInfo] = useState(false);
+  const [positionInfo, setPositionInfo] = useState({
+    left: 0,
+    top: 0,
+  });
 
   function countryInformation(event) {
+    const allCountries = event.currentTarget.querySelectorAll("path");
+    const allCountriesArray = Array.from(allCountries);
+
+    const mouseX = event.clientX; // Posição horizontal (em pixels)
+    const mouseY = event.clientY; // Posição vertical (em pixels)
+
+    // console.log(`Mouse X: ${mouseX}, Mouse Y: ${mouseY}`);
+
     if (event.target.tagName == "path") {
       const currentCountryName = event.target.dataset.countryname;
       const currentCountry = event.target.parentNode.querySelectorAll(
         `[data-countryname="${currentCountryName}"]`
       );
 
+      // Obtendo a posição do elemento na página
+      const rect = event.currentTarget.getBoundingClientRect();
+
+      // Calculando a posição do mouse em relação ao elemento
+      const mouseRelativeX = mouseX - rect.left;
+      const mouseRelativeY = mouseY - rect.top;
+
+      setPositionInfo({
+        left: mouseRelativeX,
+        top: mouseRelativeY,
+      });
+
+      // console.log(
+      //   `Posição do mouse em relação ao elemento: X: ${mouseRelativeX}, Y: ${mouseRelativeY}`
+      // );
+
+      setCountryName(currentCountryName);
+      setDisplayInfo(true);
+
       const currentCountryArray = Array.from(currentCountry);
 
-      // console.log(countryName);
-      console.log(currentCountryArray);
+      if (currentCountryName != prevCountryName) {
+        allCountriesArray.forEach((country) => {
+          if (country.dataset.countryname != currentCountryName) {
+            country.classList.remove("fill-red-400");
+          }
+        });
 
-      if (currentCountryName != prevCountryName && prevCountryName == null) {
         currentCountryArray.forEach((country) => {
           country.classList.add("fill-red-400");
         });
-      } else if (currentCountryName != prevCountryName) {
-        currentCountryArray.forEach((country) => {
-          country.classList.add("fill-red-400");
-        });
 
-        prevCountryArray.forEach((country) => {
-          country.classList.remove("fill-red-400");
-        });
+        prevCountryName = currentCountryName;
       }
+    } else {
+      setDisplayInfo(false);
 
-      prevCountryName = currentCountryName;
-      prevCountryArray = currentCountryArray;
+      allCountriesArray.forEach((country) => {
+        country.classList.remove("fill-red-400");
+      });
     }
   }
 
@@ -42,9 +76,14 @@ function App() {
       <article className="w-full h-full grid grid-rows-1 grid-cols-4">
         <section
           id="mapa_mundi"
-          className="col-[1/4]"
+          className="col-[1/4] relative"
           onMouseMove={countryInformation}
         >
+          <CountryInfoModal
+            countryName={countryName}
+            displayInfo={displayInfo}
+            positionInfo={positionInfo}
+          />
           <svg
             baseProfile="tiny"
             fill="#ececec"
