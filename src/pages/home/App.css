@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+path:hover {
+    @apply fill-red-400;
+}
