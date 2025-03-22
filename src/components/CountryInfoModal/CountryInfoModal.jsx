@@ -21,9 +21,9 @@ function CountryInfoModal({
     }
   }, [displayInfo, countryName]); // Reexecuta quando displayInfo mudar
 
-  if (displayInfo) {
-    console.log(`width: ${size.width}, height: ${size.height}`);
-  }
+  // if (displayInfo) {
+  //   console.log(`width: ${size.width}, height: ${size.height}`);
+  // }
 
   return (
     <article
