@@ -32,11 +32,11 @@ function CountryInfoModal({
         left: `${left - 50}px`,
         top: `${top - 5 - size.height}px`,
       }}
-      className={`absolute border-1 border-solid border-black w-[100px] text-center pointer-events-none bg-white z-50 ${
+      className={`absolute border-1 border-solid border-black w-[150px] text-center pointer-events-none bg-white z-50 p-1 ${
         displayInfo ? "block" : "hidden"
       }`}
     >
-      <h1 className="text-lg">{countryName}</h1>
+      <h1 className="text-lg break-words">{countryName}</h1>
     </article>
   );
 }

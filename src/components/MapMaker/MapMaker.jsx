@@ -1,4 +1,6 @@
 function MapMaker({ clickCountry, positionMark: { left, top } }) {
+  const markerHeight = (1 * window.innerHeight) / 100;
+
   return (
     <svg
       width="800px"
@@ -6,12 +8,12 @@ function MapMaker({ clickCountry, positionMark: { left, top } }) {
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
-      className={`absolute w-[3dvw] h-[4dvh] pointer-events-none ${
+      className={`absolute h-[4dvh] w-[3dvw] min-h-[4dvh] min-w-[3dvw] pointer-events-none ${
         clickCountry ? "block" : "hidden"
       }`}
       style={{
         left: `${left}px`,
-        top: `${top - 5}px`,
+        top: `${top - markerHeight}px`,
       }}
     >
       <path

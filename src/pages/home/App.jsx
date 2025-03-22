@@ -348,7 +348,11 @@ function App() {
         top: centeredY,
       });
 
-      getCountriesInfo(codeCountry.toLowerCase());
+      if (currentCountryName == "Turkmenistan") {
+        alert("Dados Indisponiveis");
+      } else {
+        getCountriesInfo(codeCountry.toLowerCase());
+      }
     } else {
       setClickCountry(false);
     }
