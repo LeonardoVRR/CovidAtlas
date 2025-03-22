@@ -1,5 +1,50 @@
-function MapMaker({ clickCountry, positionMark: { left, top } }) {
+import { useState, useEffect } from "react";
+
+function MapMaker({ clickCountry, positionMark: { left, top }, scaleMap }) {
   const markerHeight = (1 * window.innerHeight) / 100;
+
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  const [posX, setPosX] = useState(left);
+  const [posY, setPosY] = useState(top - markerHeight);
+
+  useEffect(() => {
+    setPosX(left);
+  }, [clickCountry, left]);
+
+  useEffect(() => {
+    setPosY(top - markerHeight);
+  }, [clickCountry, top]);
+
+  useEffect(() => {
+    setPosX(left * scaleMap);
+    setPosY(top * scaleMap);
+  }, [scaleMap]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+
+      console.log("Janela redimensionada");
+    };
+
+    // Adiciona event listener para redimensionamento da janela
+    window.addEventListener("resize", handleResize);
+
+    // Limpeza do event listener
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [windowSize.width, windowSize.height]);
+
+  // const adjustedLeft = (left / 100) * windowSize.width;
+  // const adjustedTop = (top / 100) * windowSize.height - markerHeight;
 
   return (
     <svg
@@ -8,12 +53,12 @@ function MapMaker({ clickCountry, positionMark: { left, top } }) {
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
-      className={`absolute h-[4dvh] w-[3dvw] min-h-[4dvh] min-w-[3dvw] pointer-events-none ${
+      className={`absolute h-[4dvh] w-[3dvw] min-h-[4dvh] min-w-[3dvw] pointer-events-none z-20 ${
         clickCountry ? "block" : "hidden"
       }`}
       style={{
-        left: `${left}px`,
-        top: `${top - markerHeight}px`,
+        left: `${posX}px`,
+        top: `${posY}px`,
       }}
     >
       <path

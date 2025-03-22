@@ -74,28 +74,3 @@ function SelectedCountryInfo({ selectedCountry }) {
 }
 
 export default SelectedCountryInfo;
-
-/*
-      <div>
-        <h1>Country Name / Continent</h1>
-        <p>
-          Brazil (<span>South America</span>)
-        </p>
-      </div>
-      <div>
-        <h2>Population</h2>
-        <p>215353593</p>
-      </div>
-      <div>
-        <h2>Number of cases</h2>
-        <p>38743918</p>
-      </div>
-      <div>
-        <h2>Recovered</h2>
-        <p>36249161</p>
-      </div>
-      <div>
-        <h2>deaths</h2>
-        <p>711380</p>
-      </div>
-*/
