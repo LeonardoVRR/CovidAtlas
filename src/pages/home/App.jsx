@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import CountryInfoModal from "../../components/CountryInfoModal/CountryInfoModal";
 import SelectedCountryInfo from "../../components/SelectedCountryInfo/SelectedCountryInfo";
+import MapMaker from "../../components/MapMaker/MapMaker";
 
 function App() {
   // if (localStorage.getItem("countriesInfo") == null) {
@@ -259,6 +260,10 @@ function App() {
     left: 0,
     top: 0,
   });
+  const [positionMark, setPositionMark] = useState({
+    left: 0,
+    top: 0,
+  });
 
   function countryInformation(event) {
     const allCountries = event.currentTarget.querySelectorAll("path");
@@ -325,6 +330,23 @@ function App() {
     if (event.target.tagName == "path") {
       const currentCountryName = event.target.dataset.countryname;
       const codeCountry = findCodeCountry(codeCountries, currentCountryName);
+
+      const mouseX = event.clientX; // Posição horizontal (em pixels)
+      const mouseY = event.clientY; // Posição vertical (em pixels)
+
+      // Tamanho do marcador em dvw e dvh
+      const markerWidth = (3 * window.innerWidth) / 100; // 3dvw em pixels
+      const markerHeight = (4 * window.innerHeight) / 100; // 5dvh em pixels
+
+      // Centralizando o marcador com o cursor
+      const centeredX = mouseX - markerWidth / 2;
+      const centeredY = mouseY - markerHeight / 2;
+
+      // Atualizando a posição do marcador
+      setPositionMark({
+        left: centeredX,
+        top: centeredY,
+      });
 
       getCountriesInfo(codeCountry.toLowerCase());
     } else {
@@ -2439,6 +2461,8 @@ function App() {
               ></path>
             </g>
           </svg>
+
+          <MapMaker clickCountry={clickCountry} positionMark={positionMark} />
         </section>
         <section
           id="country_info"
