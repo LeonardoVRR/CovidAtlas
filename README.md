@@ -1,12 +1,43 @@
-# React + Vite
+<h1 align="center">
+    Sistema de supermercado
+</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Índice
 
-Currently, two official plugins are available:
+- [Descrição do Projeto](#descrição-do-projeto)
+- [Objetivo do projeto](#objetivo-do-projeto)
+- [Pré-requisitos](#pré-requisitos)
+- [Resultado final do projeto](#resultado-final-do-projeto)
+- [Acesso ao Projeto](#acesso-ao-projeto)
+- [Tecnologias utilizadas](#tecnologias-utilizadas)
+- [Licença](#licença)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Descrição do projeto
 
-## Expanding the ESLint configuration
+Este projeto é um site interativo de estatísticas da COVID-19, onde os usuários podem consultar dados de cada país através de um mapa interativo. Basta clicar em um país para visualizar suas informações detalhadas. O mapa também permite zoom e movimentação, proporcionando uma navegação intuitiva. Além disso, na coluna lateral esquerda, são exibidos dados globais, incluindo o número total de casos por país e no mundo inteiro, oferecendo uma visão abrangente da pandemia.
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Objetivo do projeto
+
+Desenvolver um site interativo de estatísticas da COVID-19 utilizando React e Tailwind CSS, com foco em aprimorar a manipulação de APIs, criar um mapa dinâmico interativo e explorar a estilização responsiva. O projeto também visa melhorar a experiência do usuário ao exibir dados globais e individuais de cada país de forma intuitiva e acessível.
+
+## Pré-requisitos
+
+não é necessário nenhum pré-requisito é só acessar o projeto pelo link disponibilizado em [Acesso ao Projeto](#acesso-ao-projeto) e utiliza-lo.
+
+## Resultado final do projeto
+
+## Acesso ao Projeto
+
+para acessar o projeto utilize o seguinte link: https://covid-atlas.netlify.app/
+
+## Tecnologias utilizadas
+
+- HTML5
+- CSS3
+- JavaScript
+- React
+- Tailwind CSS
+
+## Licença
+
+MIT License
