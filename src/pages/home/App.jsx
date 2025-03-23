@@ -3,6 +3,7 @@ import "./App.css";
 import CountryInfoModal from "../../components/CountryInfoModal/CountryInfoModal";
 import SelectedCountryInfo from "../../components/SelectedCountryInfo/SelectedCountryInfo";
 import WorldMap from "../../components/WorldMap/WorldMap";
+import GlobalInfo from "../../components/GlobalInfo/GlobalInfo";
 
 function App() {
   let prevCountryName = null;
@@ -263,7 +264,12 @@ function App() {
     const mouseX = event.clientX; // Posição horizontal (em pixels)
     const mouseY = event.clientY; // Posição vertical (em pixels)
 
-    if (event.target.tagName == "path") {
+    if (
+      event.target.tagName == "path" &&
+      event.target.hasAttribute("data-countryname")
+    ) {
+      //console.log(event.target);
+
       const currentCountryName = event.target.dataset.countryname;
       const currentCountry = event.target.parentNode.querySelectorAll(
         `[data-countryname="${currentCountryName}"]`
@@ -318,7 +324,10 @@ function App() {
   }
 
   function selectedCountryInformation(event) {
-    if (event.target.tagName == "path") {
+    if (
+      event.target.tagName == "path" &&
+      event.target.hasAttribute("data-countryname")
+    ) {
       document.body.style.cursor = "pointer";
       const currentCountryName = event.target.dataset.countryname;
       const codeCountry = findCodeCountry(codeCountries, currentCountryName);
@@ -361,28 +370,30 @@ function App() {
   }
 
   return (
-    <div className="w-dvw h-dvh flex flex-col items-center bg-[#181a1b]">
-      <article className="w-full h-full grid grid-rows-1 grid-cols-4 overflow-hidden">
+    <div className="w-dvw h-dvh flex flex-col items-center gap-1 p-2 bg-black">
+      <h1 className="text-4xl w-full text-center text-white p-1 select-none cursor-auto bg-[#222222]">
+        COVID-19 Worldwide
+      </h1>
+      <article className="w-full h-full grid grid-rows-1 grid-cols-5 gap-1 overflow-hidden">
+        <section className="flex items-center justify-center cursor-auto">
+          <GlobalInfo />
+        </section>
         <section
           id="mapa_mundi"
-          className="col-[1/4] relative"
+          className="col-[2/5] relative flex flex-col gap-2"
           onMouseMove={countryInformation}
           onMouseDown={selectedCountryInformation}
         >
-          <h1 className="text-4xl text-center text-white p-1">
-            COVID-19 Worldwide
-          </h1>
           <CountryInfoModal
             countryName={countryName}
             displayInfo={displayInfo}
             positionInfo={positionInfo}
           />
-
           <WorldMap clickCountry={clickCountry} />
         </section>
         <section
           id="country_info"
-          className="col-start-4 bg-slate-400 flex items-center justify-center"
+          className="col-start-5 bg-[#222222] flex items-center justify-center cursor-auto text-white"
         >
           {clickCountry ? (
             <SelectedCountryInfo selectedCountry={selectedCountry} />

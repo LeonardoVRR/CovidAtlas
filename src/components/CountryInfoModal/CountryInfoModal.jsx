@@ -32,7 +32,7 @@ function CountryInfoModal({
         left: `${left - (size.width / 100) * 50}px`,
         top: `${top - 5 - size.height}px`,
       }}
-      className={`absolute border-1 border-solid border-black w-[150px] text-center pointer-events-none bg-white z-50 p-1 ${
+      className={`absolute border-1 border-solid border-black w-[150px] text-center pointer-events-none bg-white z-50 p-1 select-none ${
         displayInfo ? "block" : "hidden"
       }`}
     >

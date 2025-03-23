@@ -48,7 +48,7 @@ function SelectedCountryInfo({ selectedCountry }) {
   return (
     <section
       key={`key-${generateRandomKey()}`}
-      className="flex flex-col gap-2 relative overflow-hidden overflow-y-auto w-full h-full"
+      className="flex flex-col gap-2 relative w-full h-full"
     >
       <img
         src={selectedCountry.countryInfo.flag}
@@ -56,19 +56,25 @@ function SelectedCountryInfo({ selectedCountry }) {
         className="sticky top-0"
       />
 
-      {Object.keys(selectedCountry).map((key, index) => {
-        if (key !== "updated" && key !== "countryInfo") {
-          const value = selectedCountry[key];
-          return (
-            <div key={index} className="p-2">
-              <h2 className="text-2xl font-bold text-orange-700">
-                {toTitle(key)}
-              </h2>
-              <p className="pl-2 text-xl font-medium">{value}</p>
-            </div>
-          );
-        }
-      })}
+      <div
+        className="overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300
+  dark:[&::-webkit-scrollbar-track]:bg-neutral-700
+  dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500"
+      >
+        {Object.keys(selectedCountry).map((key, index) => {
+          if (key !== "updated" && key !== "countryInfo") {
+            const value = selectedCountry[key];
+            return (
+              <div key={index} className="p-2">
+                <h2 className="text-xl font-bold text-red-500 w-full break-all">
+                  {toTitle(key)}
+                </h2>
+                <p className="text-xl font-normal">{value}</p>
+              </div>
+            );
+          }
+        })}
+      </div>
     </section>
   );
 }

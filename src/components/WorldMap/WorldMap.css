@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+#zoomContainer button {
+    @apply p-1;
+    @apply cursor-pointer;
+    @apply flex flex-col items-center justify-center;
+}
+
+#mapContainer path:hover {
+    @apply fill-red-400;
+}

@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+#GlobalInfo_container h1 {
+    @apply text-white;
+    @apply text-center;
+    @apply text-xl;
+}
