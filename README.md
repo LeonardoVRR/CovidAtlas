@@ -1,5 +1,5 @@
 <h1 align="center">
-    Sistema de supermercado
+    Covid Atlas
 </h1>
 
 ## Índice
@@ -25,6 +25,9 @@ Desenvolver um site interativo de estatísticas da COVID-19 utilizando React e T
 não é necessário nenhum pré-requisito é só acessar o projeto pelo link disponibilizado em [Acesso ao Projeto](#acesso-ao-projeto) e utiliza-lo.
 
 ## Resultado final do projeto
+
+![demo](https://github.com/user-attachments/assets/52dbf2fe-d5b6-404a-8b3b-771df3583428)
+
 
 ## Acesso ao Projeto
 
